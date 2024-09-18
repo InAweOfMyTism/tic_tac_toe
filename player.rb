@@ -1,4 +1,6 @@
 class Player
+  attr_accessor :score, :token
+
   def initialize(token)
     @token = token
     @score = 0
