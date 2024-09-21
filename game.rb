@@ -25,6 +25,7 @@ class Game
   private
 
   def begin_game()
+    puts "How to play:"
     puts "Player X - Enter Name:"
     player_x = gets.chomp
     puts "Player O - Enter Name:"

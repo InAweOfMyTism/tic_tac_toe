@@ -1,11 +1,12 @@
-require_relative('game')
-require_relative('player')
+require_relative('board')
 
 # initialize players X and O
 
 #initialize gameboard
 
-game = Game.new()
+board = Board.new()
+
+board.display()
 
 # loop 
   # call play game function
