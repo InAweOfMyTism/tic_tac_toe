@@ -1,9 +1,9 @@
 class Player
-  attr_accessor :score, :token
+  attr_accessor :token, :name
 
-  def initialize(token)
+  def initialize(name, token)
     @token = token
-    @score = 0
+    @name = name
   end
 
   def win()
