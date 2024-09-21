@@ -22,13 +22,16 @@ class Game
     board.place_token(row, col, @current_player.token)
 
     board.display()
+    check_winner()
+
+    @current_player.win() if @winner
+
     if (@current_player == @player1)
       @current_player = @player2
     else
       @current_player = @player1
     end
 
-    check_winner()
 
   end
 
@@ -39,23 +42,11 @@ class Game
   end
 
   def check_rows()
-    if @board[0][0] === @board[0][1] && @board[0][1] === @board[0][2]
+    if @board.spaces[0][0] === @board.spaces[0][1] && @board.spaces[0][1] === @board.spaces[0][2] && @board.spaces[0][0] != ' '
       @winner = true
-    elsif @board[1][0] === @board[1][1] && @board[1][1] === @board[1][2]
+    elsif @board.spaces[1][0] === @board.spaces[1][1] && @board.spaces[1][1] === @board.spaces[1][2] && @board.spaces[1][0] != ' '
       @winner = true
-    elsif @board[2][0] === @board[2][1] && @board[2][1] === @board[2][2]
-      @winner = true
-    else
-      return
-    end
-  end
-
-  def check_cols()
-    if @board[0][0] === @board[1][0] && @board[1][0] === @board[2][0]
-      @winner = true
-    elsif @board[0][1] === @board[1][1] && @board[1][1] === @board[2][1]
-      @winner = true
-    elsif @board[0][2] === @board[1][2] && @board[1][2] === @board[2][2]
+    elsif @board.spaces[2][0] === @board.spaces[2][1] && @board.spaces[2][1] === @board.spaces[2][2] && @board.spaces[2][0] != ' '
       @winner = true
     else
       return
@@ -63,9 +54,21 @@ class Game
   end
 
   def check_cols()
-    if @board[0][0] === @board[1][1] && @board[1][1] === @board[2][2]
+    if @board.spaces[0][0] === @board.spaces[1][0] && @board.spaces[1][0] === @board.spaces[2][0] && @board.spaces[0][0] != ' '
       @winner = true
-    elsif @board[2][0] === @board[1][1] && @board[1][1] === @board[0][2]
+    elsif @board.spaces[0][1] === @board.spaces[1][1] && @board.spaces[1][1] === @board.spaces[2][1] && @board.spaces[0][1] != ' '
+      @winner = true
+    elsif @board.spaces[0][2] === @board.spaces[1][2] && @board.spaces[1][2] === @board.spaces[2][2] && @board.spaces[0][2] != ' '
+      @winner = true
+    else
+      return
+    end
+  end
+
+  def check_diag()
+    if @board.spaces[0][0] === @board.spaces[1][1] && @board.spaces[1][1] === @board.spaces[2][2] && @board.spaces[0][0] != ' '
+      @winner = true
+    elsif @board.spaces[2][0] === @board.spaces[1][1] && @board.spaces[1][1] === @board.spaces[0][2] && @board.spaces[2][0] != ' '
       @winner = true
     else
       return

@@ -1,4 +1,6 @@
 class Board 
+  attr_accessor :spaces
+
   def initialize()
     @spaces = Array.new(3) {Array.new(3, " ")}
   end
@@ -22,7 +24,11 @@ class Board
   end
 
   def place_token(row, col, token)
-    @spaces[row][col] = token
+    if @spaces[row][col] === ' '
+      @spaces[row][col] = token
+    else 
+      return
+    end
   end
 
 end

@@ -7,6 +7,6 @@ class Player
   end
 
   def win()
-    puts "Player #{self.token} is the winner"
+    puts "#{self.name} is the winner"
   end
 end
